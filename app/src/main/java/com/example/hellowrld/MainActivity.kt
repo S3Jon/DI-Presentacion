@@ -66,10 +66,15 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun FABlol() {
     val context = LocalContext.current
-    FloatingActionButton(onClick = {
+    IconButton(onClick = {
         Toast.makeText(context, "Lol", Toast.LENGTH_SHORT).show()
-    }) {
-        Text("X")
+    }, modifier = Modifier.size(80.dp)) {
+        Icon(
+            imageVector = Icons.Default.Favorite,
+            contentDescription = "Enviar mail",
+            tint = Color(0xFF95B013),
+            modifier = Modifier.size(500.dp)
+        )
     }
 }
 
@@ -90,7 +95,7 @@ fun Appp() {
                     IconButton(onClick = {
                         val shareIntent = Intent().apply {
                             action = Intent.ACTION_SEND
-                            putExtra(Intent.EXTRA_TEXT, "Mira este perfil: https://github.com/S3Jon")
+                            putExtra(Intent.EXTRA_TEXT, "Mira este proyecto: https://github.com/S3Jon/DI-Presentacion")
                             type = "text/plain"
                         }
                         val chooserIntent = Intent.createChooser(shareIntent, "Compartir con:")
@@ -209,7 +214,7 @@ fun Appp() {
                                         style = TextStyle(fontWeight = FontWeight.Bold)
                                     )
                                     Text(
-                                        text = "Web Develompment",
+                                        text = "Web Development",
                                         color = Color.White,
                                         fontSize = 18.sp
                                     )
