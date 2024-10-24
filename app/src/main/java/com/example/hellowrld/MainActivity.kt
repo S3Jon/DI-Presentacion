@@ -173,6 +173,33 @@ fun topBarFunc() {
 
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun artBarFunc() {
+    val context = LocalContext.current
+    TopAppBar(
+        colors = topAppBarColors(
+            containerColor = MaterialTheme.colorScheme.primaryContainer,
+            titleContentColor = MaterialTheme.colorScheme.primary,
+        ),
+        actions = {
+            IconButton(onClick = {
+                val shareIntent = Intent().apply {
+                    action = Intent.ACTION_SEND
+                    putExtra(Intent.EXTRA_TEXT, "Eldenrin el mejor juego")
+                    type = "text/plain"
+                }
+                val chooserIntent = Intent.createChooser(shareIntent, "Compartir con:")
+                context.startActivity(chooserIntent)
+            }) {
+                Icon(imageVector = Icons.Default.Share, contentDescription = "Compartir")
+            }
+        },
+        title = { Text("Eldenrin") },
+    )
+
+}
+
 @Composable
 fun botBarFunc(navController: NavHostController) {
     /* Vieja Bottombar
@@ -559,7 +586,7 @@ fun Appp() {
     Scaffold(
         topBar = {
             when (loadedView) {
-                "gallery" -> topBarFunc() //TODO
+                "gallery" -> artBarFunc() //TODO
                 else -> topBarFunc()
             }
         },
